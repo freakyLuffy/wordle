@@ -194,7 +194,8 @@ for(let i=0;i<26;i++)
                     di.classList.remove('default');
                 }
             }
-           if(win(words))
+            var b=win(words);
+           if(b)
            {  
             var noti = document.getElementById('notification');
             noti.setAttribute('style','visibility:visible');
@@ -202,16 +203,18 @@ for(let i=0;i<26;i++)
             msg.innerHTML = row+"/6";
             reset(); 
            }
-           row++;
-           if(row==7){
+           else if(row==7 && !b){
             var noti = document.getElementById('notification');
             noti.setAttribute('style','visibility:visible');
             var msg = document.querySelector('.msg');
             msg.innerHTML = "GAME OVER";
             reset();
            }
+           else{
+            row++;
            j=0;
            words=[]
+           }
         }
         else{
             var noti = document.getElementById('notification');
