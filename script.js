@@ -158,7 +158,6 @@ window.addEventListener("keydown", function (event) {
                     di.classList.remove('default');
                 }
             }
-
            if(win(words))
            {  
             var noti = document.getElementById('notification');
@@ -177,7 +176,10 @@ window.addEventListener("keydown", function (event) {
            words=[]
         }
         else{
-            alert("Not in word list");
+            var noti = document.getElementById('notification');
+            noti.setAttribute('style','visibility:visible');
+            var msg = document.querySelector('.msg');
+            msg.innerHTML = "NOT IN A WORD LIST !";
         }
     }
   }
