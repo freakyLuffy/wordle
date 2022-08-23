@@ -87,6 +87,42 @@ window.addEventListener("keydown", function (event) {
         else 
         return 0;
   }
+  function reset()
+{
+     row=1;
+    j=0;
+var words=[];
+for(let i=1;i<=6;i++)
+{
+    for(let j=1;j<=5;j++)
+     {  
+         var li=document.getElementById(i.toString()+j.toString());
+         if (li.classList.contains("green")) {
+            li.classList.remove("green");
+          }
+          if (li.classList.contains("grey")) {
+            li.classList.remove("grey");
+          }
+          if (li.classList.contains("yellow")) {
+            li.classList.remove("yellow");
+          }
+         li.innerHTML="";
+     }
+}
+for(let i=0;i<26;i++)
+  {
+    var li=document.getElementById(lst[i]);
+    if (li.classList.contains("green")) {
+        li.classList.remove("green");
+      }
+      if (li.classList.contains("grey")) {
+        li.classList.remove("grey");
+      }
+    li.classList.add("default");
+  }
+  word=WORDS[Math.floor(Math.random() * WORDS.length)];
+}
+
   function enter()
   {
     for(let i=0;i<5;i++)
@@ -163,7 +199,8 @@ window.addEventListener("keydown", function (event) {
             var noti = document.getElementById('notification');
             noti.setAttribute('style','visibility:visible');
             var msg = document.querySelector('.msg');
-            msg.innerHTML = "You Win the game in "+row+" moves";   
+            msg.innerHTML = row+"/6";
+            reset(); 
            }
            row++;
            if(row==7){
@@ -171,6 +208,7 @@ window.addEventListener("keydown", function (event) {
             noti.setAttribute('style','visibility:visible');
             var msg = document.querySelector('.msg');
             msg.innerHTML = "GAME OVER";
+            reset();
            }
            j=0;
            words=[]
@@ -179,7 +217,10 @@ window.addEventListener("keydown", function (event) {
             var noti = document.getElementById('notification');
             noti.setAttribute('style','visibility:visible');
             var msg = document.querySelector('.msg');
-            msg.innerHTML = "NOT IN A WORD LIST !";
+            msg.innerHTML = "NOT IN THE WORD LIST !";
+            setTimeout(() => {
+                noti.setAttribute('style','visibility:hidden');
+              }, "1000")
         }
     }
   }
