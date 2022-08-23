@@ -7,7 +7,13 @@ import { ob,WORDS } from "./words.js";
 // console.log(WORDS[i]);
 var word=WORDS[Math.floor(Math.random() * WORDS.length)];
 console.log(word);
-var dct={}
+var dct={};
+var closebtn = document.getElementById('close-btn');
+closebtn.addEventListener('click',(event)=>{
+    console.log('button clicked!');
+    var noti = document.getElementById('notification');
+    noti.setAttribute('style','visibility:hidden');
+});
 window.addEventListener("keydown", function (event) {
     if (event.key !== undefined) {
         if(event.keyCode>=65 && event.keyCode<=97)
@@ -111,8 +117,11 @@ window.addEventListener("keydown", function (event) {
                    
                     
                     var di = document.getElementById(words[i].toUpperCase());
-                    div.style.backgroundColor='green';
-                    di.style.backgroundColor='green';
+                    // div.style.backgroundColor='#6aaa64';
+                    // di.style.backgroundColor='#6aaa64';
+                    div.classList.add('green');
+                    di.classList.add('green');
+                    di.classList.remove('default');
                     dct[words[i]]--;
                 }
             }
@@ -128,8 +137,11 @@ window.addEventListener("keydown", function (event) {
                     dct[words[i]]--;
                     var div = document.getElementById(idd);
                     var di = document.getElementById(words[i].toUpperCase());
-                    div.style.backgroundColor='yellow';
-                    di.style.backgroundColor='yellow';
+                    // div.style.backgroundColor='#c9b458';
+                    // di.style.backgroundColor='#c9b458';
+                    div.classList.add('yellow');
+                    di.classList.add('yellow');
+                    di.classList.remove('default');
                 }
                 else if(words[i]!=word[i]){
                     var p1=row.toString();
@@ -139,18 +151,28 @@ window.addEventListener("keydown", function (event) {
                     var idd=p1+p2;
                     var di = document.getElementById(words[i].toUpperCase());
                     var div = document.getElementById(idd);
-                    div.style.backgroundColor='grey';
-                    di.style.backgroundColor='grey';
+                    // div.style.backgroundColor='#86888a';
+                    // di.style.backgroundColor='#86888a';
+                    div.classList.add('grey');
+                    di.classList.add('grey');
+                    di.classList.remove('default');
                 }
             }
 
            if(win(words))
            {  
-            setTimeout(function(){ 
-                alert("WIN WIN WIN");
-            }, 1000);   
+            var noti = document.getElementById('notification');
+            noti.setAttribute('style','visibility:visible');
+            var msg = document.querySelector('.msg');
+            msg.innerHTML = "You Win the game in "+row+" moves";   
            }
            row++;
+           if(row==7){
+            var noti = document.getElementById('notification');
+            noti.setAttribute('style','visibility:visible');
+            var msg = document.querySelector('.msg');
+            msg.innerHTML = "GAME OVER";
+           }
            j=0;
            words=[]
         }
