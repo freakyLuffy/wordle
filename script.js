@@ -5799,7 +5799,7 @@ window.addEventListener("keydown", function (event) {
         change(lst[i]);
       });
   }
-  document.getElementById('x').addEventListener("click", function() {
+  document.getElementById('x1').addEventListener("click", function() {
        back();
   });
   document.getElementById('Enter').addEventListener("click", function() {
