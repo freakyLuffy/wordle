@@ -3,6 +3,12 @@ var j=0;
 var row=1;
 var words=[];
 //export {ob, WORDS}
+function init()
+{
+
+
+
+}
 const WORDS = [
     'which',
     'there',
@@ -5891,7 +5897,10 @@ for(let i=0;i<26;i++)
   {
     for(let i=0;i<5;i++)
     {
+      if(word[i] in dct)
         dct[word[i]]=1;
+        else
+        dct[word[i]]++;
     }
     if(j==5)
     {
