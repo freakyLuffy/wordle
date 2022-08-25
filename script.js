@@ -5860,7 +5860,7 @@ window.addEventListener("keydown", function (event) {
 {
      row=1;
     j=0;
-var words=[];
+ words=[];
 for(let i=1;i<=6;i++)
 {
     for(let j=1;j<=5;j++)
