@@ -5875,7 +5875,6 @@ init();
       words.push(p);
       console.log(p);
      }
-     
   }
   function win(words)
   {
@@ -5935,12 +5934,13 @@ for(let i=0;i<26;i++)
 
   function enter()
   {
+    dct={};
     for(let i=0;i<5;i++)
     {
       if(word[i] in dct)
-        dct[word[i]]=1;
-        else
         dct[word[i]]++;
+        else
+        dct[word[i]]=1;
     }
     if(j==5)
     {
@@ -5968,33 +5968,35 @@ for(let i=0;i<26;i++)
                     var p2=k.toString();
                     var idd=p1+p2;
                     var div = document.getElementById(idd);
-                    localStorage.setItem(idd,"green");
-                   
-                    
+                    localStorage.setItem(idd,"green");     
                     var di = document.getElementById(words[i]);
                     localStorage.setItem(words[i],"green");
                     // div.style.backgroundColor='#6aaa64';
                     // di.style.backgroundColor='#6aaa64';
-                    div.classList.add('green');
-                    if (di.classList.contains("yellow")) 
-                    {
-                        di.classList.remove("yellow");
-                    }
-                    if (di.classList.contains("grey")) {
-                      di.classList.remove("grey");
-                     }
-                     if (di.classList.contains("default")) {
-                        di.classList.remove("default");
-                     }
-                     if (!di.classList.contains("green")) {
-                      di.classList.add("green");
-                     }
+                    div.classList.add('green'); 
+                       di.setAttribute("class", "");
+                       di.classList.add("cell2");
+                       di.classList.add("green");
+
+                    // if (di.classList.contains("yellow")) 
+                    // {
+                    //     di.classList.remove("yellow");
+                    // }
+                    // if (di.classList.contains("grey")) {
+                    //   di.classList.remove("grey");
+                    //  }
+                    //  if (di.classList.contains("default")) {
+                    //     di.classList.remove("default");
+                    //  }
+                    //  if (!di.classList.contains("green")) {
+                    //   di.classList.add("green");
+                    //  }
                     dct[words[i]]--;
                 }
             }
             for(let i=0;i<5;i++)
             {
-                 if(words[i] in dct && dct[words[i]]>=1)
+                 if(dct[words[i]]>=1)
                 {
                     var p1=row.toString();
                     var k=i+1;
@@ -6009,22 +6011,19 @@ for(let i=0;i<26;i++)
                     // div.style.backgroundColor='#c9b458';
                     // di.style.backgroundColor='#c9b458';
                       div.classList.add("yellow");
-                      if (di.classList.contains("default")){
-                        di.classList.remove("default");
-                     }
-                        if(!di.classList.contains("green")) 
-                      {
-                        if (!di.classList.contains("yellow")) 
-                        {
-                        di.classList.add("yellow");
-                        if (di.classList.contains("grey")) 
-                        {
-                        di.classList.remove("grey");
-                        }
-                        }
-                      }
+                      di.setAttribute("class", "");
+                       di.classList.add("cell2");
+                       di.classList.add("yellow");
+                    //   if (di.classList.contains("default")){
+                    //     di.classList.remove("default");
+                    //  }
+                    //     if(di.classList.contains("yellow")) 
+                    //   {
+                    //     di.classList.remove("yellow");
+                    //   }
+
                 }
-                else if(words[i]!=word[i]){
+                else if (!(words[i] in dct)){
                     var p1=row.toString();
                     var k=i+1;
                   //  console.log(j);
@@ -6037,17 +6036,20 @@ for(let i=0;i<26;i++)
                     // div.style.backgroundColor='#86888a';
                     // di.style.backgroundColor='#86888a';
                     div.classList.add('grey');
-                    if(!di.classList.contains("green"))
-                    {
-                      if(!di.classList.contains("yellow"))
-                      {  
-                        if(!di.classList.contains("grey"))
-                        {
-                          di.classList.remove("default");
-                          di.classList.add("grey");
-                        }
-                      }
-                    }
+                    di.setAttribute("class", "");
+                    di.classList.add("cell2");
+                    di.classList.add("grey");
+                    // if(!di.classList.contains("green"))
+                    // {
+                    //   if(!di.classList.contains("yellow"))
+                    //   {  
+                    //     if(!di.classList.contains("grey"))
+                    //     {
+                    //       di.classList.remove("default");
+                    //       di.classList.add("grey");
+                    //     }
+                    //   }
+                    // }
                 }
             }
             var b=win(words);
