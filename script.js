@@ -1,3 +1,5 @@
+const { disconnect } = require("process");
+
 var i=1;
 var j=0;
 var row=1;
@@ -6010,10 +6012,16 @@ for(let i=0;i<26;i++)
                     var di = document.getElementById(words[i]);
                     // div.style.backgroundColor='#c9b458';
                     // di.style.backgroundColor='#c9b458';
-                      div.classList.add("yellow");
+                    div.classList.add("yellow");
+                    if(!di.classList.contains("green"))
+                    {
                       di.setAttribute("class", "");
-                       di.classList.add("cell2");
-                       di.classList.add("yellow");
+                      di.classList.add("cell2");
+                      di.classList.add("yellow");
+
+                    }
+                      
+                     
                     //   if (di.classList.contains("default")){
                     //     di.classList.remove("default");
                     //  }
@@ -6036,9 +6044,17 @@ for(let i=0;i<26;i++)
                     // div.style.backgroundColor='#86888a';
                     // di.style.backgroundColor='#86888a';
                     div.classList.add('grey');
-                    di.setAttribute("class", "");
-                    di.classList.add("cell2");
-                    di.classList.add("grey");
+                    if(!di.classList.contains("green"))
+                    {
+                      if(!di.classList.contains("yellow"))
+                      {
+                        di.setAttribute("class", "");
+                        di.classList.add("cell2");
+                        di.classList.add("grey");
+
+                      }
+                    }
+
                     // if(!di.classList.contains("green"))
                     // {
                     //   if(!di.classList.contains("yellow"))
