@@ -5965,20 +5965,20 @@ for(let i=0;i<26;i++)
                 {
                     var p1=row.toString();
                     var k=i+1;
-                    console.log("here");
+                    
                     var p2=k.toString();
                     var idd=p1+p2;
                     var div = document.getElementById(idd);
                     localStorage.setItem(idd,"green");     
                     var di = document.getElementById(words[i]);
                     localStorage.setItem(words[i],"green");
+
                     // div.style.backgroundColor='#6aaa64';
                     // di.style.backgroundColor='#6aaa64';
-                    div.classList.add('green'); 
+                       div.classList.add("green"); 
                        di.setAttribute("class", "");
                        di.classList.add("cell2");
                        di.classList.add("green");
-
                     // if (di.classList.contains("yellow")) 
                     // {
                     //     di.classList.remove("yellow");
@@ -6030,7 +6030,7 @@ for(let i=0;i<26;i++)
                     //   }
 
                 }
-                else if (!(words[i] in dct)){
+                else if (words[i]!=word[i] && (!(words[i] in dct) || dct[words[i]]==0)){
                     var p1=row.toString();
                     var k=i+1;
                   //  console.log(j);
