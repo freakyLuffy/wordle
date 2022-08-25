@@ -3,12 +3,7 @@ var j=0;
 var row=1;
 var words=[];
 //export {ob, WORDS}
-function init()
-{
 
-
-
-}
 const WORDS = [
     'which',
     'there',
@@ -5774,6 +5769,14 @@ const ob={};
       ob[WORDS[i]]=1;
   }
 var word=WORDS[Math.floor(Math.random() * WORDS.length)];
+if(localStorage.getItem("word")==null)
+{
+  localStorage.setItem("word",word);
+}
+else{
+  word=localStorage.getItem("word");
+}
+
 console.log(word);
 var dct={};
 var closebtn = document.getElementById('close-btn');
@@ -5799,6 +5802,40 @@ window.addEventListener("keydown", function (event) {
     } 
   });
   var lst=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t",'u',"v","w","x","y","z"]
+  function init()
+{
+
+  for(let i=0;i<26;i++)
+  {
+      var di=document.getElementById(lst[i]);
+      if (!(localStorage.getItem(lst[i]) === null)) {
+        console.log(localStorage.getItem(lst[i]));
+        di.classList.remove("default");
+        di.classList.add(localStorage.getItem(lst[i]));
+      }
+  }
+  for(let i=1;i<=6;i++)
+  {
+    for(let j=1;j<=5;j++)
+    {
+      var li=document.getElementById(i.toString()+j.toString());
+      if (!(localStorage.getItem(i.toString()+j.toString()) === null)) {
+           li.classList.add(localStorage.getItem(i.toString()+j.toString()));
+      }
+      if (!(localStorage.getItem(i.toString()+j.toString()+"1") === null)) {
+        li.innerHTML=localStorage.getItem(i.toString()+j.toString()+"1");
+     }
+     
+    }
+  }
+  if (!(localStorage.getItem("word") === null)) {
+    word=localStorage.getItem("word");
+ }
+ if (!(localStorage.getItem("row") === null)) {
+      row=localStorage.getItem("row");
+}
+}
+init();
   for(let i=0;i<26;i++)
   {
     document.getElementById(lst[i]).addEventListener("click", function() {
@@ -5891,6 +5928,9 @@ for(let i=0;i<26;i++)
   }
   word=WORDS[Math.floor(Math.random() * WORDS.length)];
   dct={};
+  localStorage.clear();
+  localStorage.setItem("word",word);
+  console.log(word);
 }
 
   function enter()
@@ -5913,6 +5953,11 @@ for(let i=0;i<26;i++)
          console.log(st);
         if(st in ob)
         {
+          for(let i=1;i<=5;i++)
+          {
+            var li=document.getElementById(row.toString()+i.toString()+"1");
+            localStorage.setItem(row.toString()+i.toString()+"1",st[i-1].toUpperCase());
+          }
             for(let i=0;i<5;i++)
             {
                 if(words[i]==word[i])
@@ -5923,9 +5968,11 @@ for(let i=0;i<26;i++)
                     var p2=k.toString();
                     var idd=p1+p2;
                     var div = document.getElementById(idd);
+                    localStorage.setItem(idd,"green");
                    
                     
                     var di = document.getElementById(words[i]);
+                    localStorage.setItem(words[i],"green");
                     // div.style.backgroundColor='#6aaa64';
                     // di.style.backgroundColor='#6aaa64';
                     div.classList.add('green');
@@ -5954,6 +6001,8 @@ for(let i=0;i<26;i++)
                   //  console.log(j);
                     var p2=k.toString();
                     var idd=p1+p2;
+                    localStorage.setItem(idd,"yellow");
+                    localStorage.setItem(words[i],"yellow");
                     dct[words[i]]--;
                     var div = document.getElementById(idd);
                     var di = document.getElementById(words[i]);
@@ -5983,6 +6032,8 @@ for(let i=0;i<26;i++)
                     var idd=p1+p2;
                     var di = document.getElementById(words[i]);
                     var div = document.getElementById(idd);
+                    localStorage.setItem(words[i],"grey");
+                    localStorage.setItem(idd,"grey");
                     // div.style.backgroundColor='#86888a';
                     // di.style.backgroundColor='#86888a';
                     div.classList.add('grey');
@@ -6020,6 +6071,7 @@ for(let i=0;i<26;i++)
            }
            else{
             row++;
+            localStorage.setItem("row",row);
            j=0;
            words=[]
            }
@@ -6031,7 +6083,7 @@ for(let i=0;i<26;i++)
             msg.innerHTML = "NOT IN THE WORD LIST !";
             setTimeout(() => {
                 noti.setAttribute('style','visibility:hidden');
-              }, "1000")
+              }, "500")
         }
     }
   }
