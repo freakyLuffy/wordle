@@ -6005,7 +6005,7 @@ for(let i=0;i<26;i++)
                     var p2=k.toString();
                     var idd=p1+p2;
                     localStorage.setItem(idd,"yellow");
-                    localStorage.setItem(words[i],"yellow");
+                  
                     dct[words[i]]--;
                     var div = document.getElementById(idd);
                     var di = document.getElementById(words[i]);
@@ -6017,6 +6017,7 @@ for(let i=0;i<26;i++)
                       di.setAttribute("class", "");
                       di.classList.add("cell2");
                       di.classList.add("yellow");
+                      localStorage.setItem(words[i],"yellow");
 
                     }
                       
@@ -6038,7 +6039,7 @@ for(let i=0;i<26;i++)
                     var idd=p1+p2;
                     var di = document.getElementById(words[i]);
                     var div = document.getElementById(idd);
-                    localStorage.setItem(words[i],"grey");
+                    
                     localStorage.setItem(idd,"grey");
                     // div.style.backgroundColor='#86888a';
                     // di.style.backgroundColor='#86888a';
@@ -6050,6 +6051,7 @@ for(let i=0;i<26;i++)
                         di.setAttribute("class", "");
                         di.classList.add("cell2");
                         di.classList.add("grey");
+                        localStorage.setItem(words[i],"grey");
 
                       }
                     }
