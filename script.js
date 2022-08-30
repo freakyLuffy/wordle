@@ -5872,9 +5872,9 @@ init();
       var p2=j.toString();
       var idd=p1+p2;
       var div = document.getElementById(idd);
-      div.innerHTML=p.toUpperCase();;
-      words.push(p);
-      console.log(p);
+      div.innerHTML=p.toUpperCase();
+      words.push(p.toLowerCase());
+      console.log(p.toLowerCase());
      }
   }
   function win(words)
