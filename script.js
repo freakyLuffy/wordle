@@ -5874,7 +5874,6 @@ init();
       var div = document.getElementById(idd);
       div.innerHTML=p.toUpperCase();
       words.push(p.toLowerCase());
-      console.log(p.toLowerCase());
      }
   }
   function win(words)
